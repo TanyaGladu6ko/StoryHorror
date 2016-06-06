@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme">
+        <item>День</item>
+        <item>Серость</item>
+        <item>Ночь</item>
+        <item>Оливковый</item>
+    </string-array>
+</resources>

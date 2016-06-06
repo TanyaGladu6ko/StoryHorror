@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.MainActivity">
+
+    <item
+        android:id="@+id/main"
+        android:orderInCategory="100"
+        android:title="Истории"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/read"
+        android:orderInCategory="100"
+        android:title="Прочитанные истории"
+        app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="100"
+        android:title="Настройки"
+        app:showAsAction="never"/>
+
+
+</menu>

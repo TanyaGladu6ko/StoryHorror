@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="text_style">
+        <item>Крошечный</item>
+        <item>Нормальный</item>
+        <item>Крупный</item>
+        <item>Очень крупный</item>
+    </string-array>
+</resources>

@@ -1,0 +1,52 @@
+<resources>
+    <string name="adBottomId">ca-app-pub-3020919922659594/8346411869</string>
+    <string name="adBottomId2">ca-app-pub-3020919922659594/7449931464</string>
+    <string name="adFullId">ca-app-pub-3020919922659594/6730077860</string>
+
+    <string name="app_name"><b>Страшные истории</b></string>
+    <string name="splash">СТРАШНЫЕ\nИСТОРИИ</string>
+    <string name="title_activity_setting">Settings</string>
+
+    <string name="pref_color">Цвет</string>
+    <string name="pref_color_black">Черный цвет</string>
+    <string name="pref_color_red">Красный цвет</string>
+    <string name="pref_color_grey">Серый цвет</string>
+    <string name="pref_color_white">Белый цвет</string>
+    <string name="pref_size">Размер</string>
+    <string name="pref_style">Стиль</string>
+    <string name="theme_style">Тема</string>
+    <string name="fon_style">Фон</string>
+    <string name="fon_style_white">Белый</string>
+    <string name="fon_style_gray">Серый</string>
+    <string name="fon_style_black">Черный</string>
+    <string name="pref_style_regular">Нормальный</string>
+    <string name="pref_style_bold">Полужирный</string>
+    <string name="pref_style_italic">Курсив</string>
+    <string name="pref_openmode">open</string>
+    <string name="color_text">Цвет текста</string>
+    <string name="text_color_white">Белый</string>
+    <string name="text_color_gray">Серый</string>
+    <string name="text_color_black">Черный</string>
+    <string name="text_color_red">Красный</string>
+    <string name="theme_name">День</string>
+    <string name="theme_name1">Серость</string>
+    <string name="theme_name2">Ночь</string>
+
+    <string name="starPlayMarket"><b>Оцени приложение!</b>\n\n
+        Если тебе нравится наше приложение, оцени его!\n
+        Спасибо за <b>Вашу поддержку!</b>\n Она неоходима нам!
+    </string>
+
+    <string name="kripper">Истории взяты с kriper.ru</string>
+    <string name="style_regular">Стиль текста</string>
+    <string name="dialog_wait">waitting</string>
+
+    <string name="googleplay_url">https://play.google.com/store/apps/details?id=com.story.krokosha.horrorstory</string>
+    <string name="friend">Расскажи о нем, своим друзьям!</string>
+    <string name="share">Поделиться</string>
+    <string name="apprise">Оценить</string>
+    <string name="share_to">Поделиться</string>
+    <string name="subject">Пощекочи себе нервишки! Читай реальные Страшные истории!</string>
+    <string name="message">Вы можете скачать приложение "Страшные истории" для Android в </string>
+</resources>
+

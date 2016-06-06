@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8b0101</color>
+    <color name="colorPrimaryDark">#585858</color>
+    <color name="colorAccent">#2f2e2e</color>
+    <color name="black">#800101</color>
+    <color name="red">#800101</color>
+    <color name="white">#fffefe</color>
+    <color name="grey">#d1d1d1</color>
+    <color name="background_material_light">#fafafa</color>
+    <color name="accent_material_dark_1">#c80111</color>
+    <color name="accent_material_dark_2">#7a0000</color>
+    <color name="accent_material_light_1">#a50000</color>
+    <color name="accent_material_dark_3">#990000</color>
+    <color name="primary_dark_material_dark_1">#b20000</color>
+    <color name="accent_material_dark">#990000</color>
+    <color name="primary_dark_material_dark">#880000</color>
+    <color name="accent_material_light_2">#96000f</color>
+    <color name="primary_material_light_1">#9b0000</color>
+    <color name="foreground_material_dark_1">#000000</color>
+    <color name="color">#960005</color>
+    <color name="primary_text_material_dark">#080808</color>
+    <color name="accent_material_light_3">#0e0e0e</color>
+    <color name="foreground_material_dark">#080808</color>
+    <color name="colorBackground">#800101</color>
+    <color name="primary_dark_material_dark_2">#464545</color>
+    <color name="accent_material_dark_4">#990000</color>
+    <color name="foreground_material_dark_2">#990000</color>
+    <color name="accent_material_light_4">#545454</color>
+</resources>
