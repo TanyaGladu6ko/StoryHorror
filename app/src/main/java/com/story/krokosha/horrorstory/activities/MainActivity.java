@@ -39,23 +39,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         raw = R.raw.class.getFields();
-        go();
+        go(raw);
         initToolBar();
 
         AdView adView = (AdView) findViewById(R.id.adView);
         Utils.startBanner(adView);
     }
 
-    private void go() {
-        new AsyncTask<Void, Void, Void>() {
+    private void go(Field[] field) {
+        new AsyncTask<Field[], Void, Void>() {
             @Override
-            protected Void doInBackground(Void... params) {
+            protected Void doInBackground(Field[]... params1) {
                 String line;
-                for (Field aRaw : raw) {
+                for (Field aRaw : params1) {
                     try {
                         InputStream inputStream = getResources().openRawResource(aRaw.getInt(0));
-                        Log.e("FFFF", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! getType() : " + aRaw.getType());
-                        Log.e("FFFF", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! toString() : " + aRaw.toString());
 
                         InputStreamReader inputreader = new InputStreamReader(inputStream);
                         BufferedReader bufferedreader = new BufferedReader(inputreader);
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 listView.setOnItemClickListener(new NextPage());
 
             }
-        }.execute();
+        }.execute(field);
     }
 
     public void initToolBar() {
