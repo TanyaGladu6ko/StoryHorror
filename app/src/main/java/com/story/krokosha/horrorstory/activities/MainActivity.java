@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,32 +23,29 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private Adapter adapter;
-    private Field[] raw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        raw = R.raw.class.getFields();
+        Field[] raw = R.raw.class.getFields();
         go(raw);
         initToolBar();
-
         AdView adView = (AdView) findViewById(R.id.adView);
         Utils.startBanner(adView);
     }
 
-    private void go(Field[] field) {
-        new AsyncTask<Field[], Void, Void>() {
+    private void go(Field[] raw) {
+        new AsyncTask<Field, Void, Void>() {
             @Override
-            protected Void doInBackground(Field[]... params1) {
+            protected Void doInBackground(Field... params1) {
                 String line;
+
                 for (Field aRaw : params1) {
                     try {
                         InputStream inputStream = getResources().openRawResource(aRaw.getInt(0));
@@ -78,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 listView.setOnItemClickListener(new NextPage());
 
             }
-        }.execute(field);
+        }.execute(raw);
     }
 
     public void initToolBar() {
@@ -94,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Content.class);
             intent.putExtra("id", position);
             startActivity(intent);
+            overridePendingTransition(R.anim.open_next, R.anim.close_main);
         }
     }
 
@@ -103,12 +99,15 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case R.id.settings:
                 startActivity(new Intent(getApplicationContext(), Setting.class));
+                overridePendingTransition(R.anim.open_next, R.anim.close_main);
                 return true;
             case R.id.aboutProgramm:
                 startActivity(new Intent(getApplicationContext(), AboutProgramm.class));
+                overridePendingTransition(R.anim.open_next, R.anim.close_main);
                 return true;
             case R.id.read:
                 startActivity(new Intent(getApplicationContext(), ReadStory.class));
+                overridePendingTransition(R.anim.open_next, R.anim.close_main);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

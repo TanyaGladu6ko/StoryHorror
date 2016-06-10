@@ -1,9 +1,6 @@
 package com.story.krokosha.horrorstory.activities;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,13 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
-import com.google.android.gms.ads.AdView;
 import com.story.krokosha.horrorstory.R;
+import com.story.krokosha.horrorstory.tools.CallBackDialog;
 import com.story.krokosha.horrorstory.tools.Singleton;
-import com.story.krokosha.horrorstory.tools.SingletonReadStory;
 import com.story.krokosha.horrorstory.tools.Utils;
 
 import java.io.BufferedReader;
@@ -30,14 +24,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Content extends AppCompatActivity {
     private Context context;
     private String data;
     private WebView mWebView;
     private WebSettings settings;
-    private int position;
+    private static int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +46,6 @@ public class Content extends AppCompatActivity {
         for (int i = 0; i < ID_Fields.length; i++) {
             try {
                 resArray[i] = ID_Fields[i].getInt(null);
-                System.out.println(resArray[i]);
             } catch (IllegalArgumentException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -68,7 +60,7 @@ public class Content extends AppCompatActivity {
         mWebView.loadDataWithBaseURL(data, htmlText, "text/html", "en_US", null);
         initToolBar();
 
-        new Utils.SyncShowAd(context).execute();
+        new Utils.syncShowAd(context).execute();
     }
 
     // reading text of raw folder
@@ -102,39 +94,57 @@ public class Content extends AppCompatActivity {
         getSupportActionBar().setTitle(Singleton.getInstance().getTopic().get(position));
         toolbar.setLogo(R.drawable.reaper);
         toolbar.setNavigationIcon(R.drawable.toolbar_back);
-        toolbar.setNavigationOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Content.this);
-                        builder.setTitle("Отметить историю прочитанной?")
-                                .setIcon(R.drawable.dead_man_hand)
-                                .setCancelable(false)
-                                .setNegativeButton("Да",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                String a = Singleton.getInstance().getTopic().get(position);
-                                                SingletonReadStory.getInstance().getStoryRead().add(a);
-                                                deleteInArray();
-                                                saveArray(SingletonReadStory.getInstance().getStoryRead(), context);
-                                                System.out.println("AAAAAAAAAAA" +" " + saveArray(SingletonReadStory.getInstance().getStoryRead(), context));
-                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            }
-                                        })
-                                .setPositiveButton("Нет",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.cancel();
-                                                finish();
-                                            }
-                                        });
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                    }
-                }
-        );
+        toolbar.setNavigationOnClickListener(listener);
     }
+
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Utils.showDialog(Content.this, callBackDialog);
+        }
+    };
+
+    CallBackDialog callBackDialog = new CallBackDialog(){
+        @Override
+        public void onSuccess() {
+
+        }
+
+        @Override
+        public void onRefused() {
+            finish();
+            overridePendingTransition(R.anim.open_main, R.anim.close_next);
+        }
+    };
+
+//    private void showDialog(final Context context) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setTitle(context.getResources().getString(R.string.mark_as_read))
+//                .setIcon(R.drawable.dead_man_hand)
+//                .setCancelable(false)
+//                .setNegativeButton(context.getResources().getString(R.string.yes),
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                String a = Singleton.getInstance().getTopic().get(position);
+//                                SingletonReadStory.getInstance().getStoryRead().add(a);
+//                                deleteInArray();
+//                                saveArray(SingletonReadStory.getInstance().getStoryRead(), context);
+//                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                                overridePendingTransition(R.anim.open_next, R.anim.close_main);
+//                            }
+//                        })
+//                .setPositiveButton(context.getResources().getString(R.string.no),
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.cancel();
+//                                finish();
+//                            }
+//                        });
+//        AlertDialog alert = builder.create();
+//        alert.show();
+//    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -227,6 +237,11 @@ public class Content extends AppCompatActivity {
                     + "</body></html>";
             mWebView.loadDataWithBaseURL(data, text, "text/html", "en_US", null);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Utils.showDialog(Content.this, callBackDialog);
     }
 
     private void deleteInArray() {

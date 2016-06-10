@@ -1,6 +1,9 @@
 package com.story.krokosha.horrorstory.tools;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.View;
@@ -51,6 +54,7 @@ public class Utils {
             if (IS_ADMOB_IN_DEBUG) {
                 adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                         .build();
+
             } else {
                 adRequest = new AdRequest.Builder().build();
             }
@@ -58,14 +62,14 @@ public class Utils {
         }
     }
 
-    public static class SyncShowAd extends AsyncTask<Void, Void, Void> {
+    public static class syncShowAd extends AsyncTask<Void, Void, Void> {
 
         private AdRequest interstitialAdRequest;
         private InterstitialAd interstitialAd;
         private int interstitialTrigger;
         private Context context;
 
-        public SyncShowAd(Context context) {
+        public syncShowAd(Context context) {
             this.context = context;
         }
 
@@ -121,5 +125,31 @@ public class Utils {
                 });
             }
         }
+    }
+
+    public static void showDialog(Activity activity, final CallBackDialog callBackDialog) {
+        Context context = activity.getApplicationContext();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(context.getResources().getString(R.string.mark_as_read))
+                .setIcon(R.drawable.dead_man_hand)
+                .setCancelable(false)
+                .setNegativeButton(context.getResources().getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                callBackDialog.onSuccess();
+                                dialog.cancel();
+                            }
+                        })
+                .setPositiveButton(context.getResources().getString(R.string.no),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                callBackDialog.onRefused();
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

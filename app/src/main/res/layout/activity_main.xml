@@ -12,16 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"/>
+        android:minHeight="?attr/actionBarSize" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/adView"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_margin="8dp"
-        android:layout_above="@+id/adView"
         android:padding="3dp" />
 
     <com.google.android.gms.ads.AdView
