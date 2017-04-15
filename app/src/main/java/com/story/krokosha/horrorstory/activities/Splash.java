@@ -30,8 +30,8 @@ public class Splash extends AppCompatActivity {
                     });
 
                     int logoTimer = 0;
-                    while (logoTimer < 3500) {
-                        sleep(130);
+                    while (logoTimer < 2500) {
+                        sleep(100);
                         logoTimer = logoTimer + 100;
                     }
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));

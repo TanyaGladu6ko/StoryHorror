@@ -2,6 +2,7 @@
     <string name="adBottomId">ca-app-pub-3020919922659594/8346411869</string>
     <string name="adBottomId2">ca-app-pub-3020919922659594/7449931464</string>
     <string name="adFullId">ca-app-pub-3020919922659594/6730077860</string>
+    <string name="adBottomId3">ca-app-pub-3020919922659594/4334367869</string>
 
     <string name="app_name"><b>Страшные истории</b></string>
     <string name="splash">СТРАШНЫЕ\nИСТОРИИ</string>
@@ -48,5 +49,8 @@
     <string name="share_to">Поделиться</string>
     <string name="subject">Пощекочи себе нервишки! Читай реальные Страшные истории!</string>
     <string name="message">Вы можете скачать приложение "Страшные истории" для Android в </string>
+    <string name="mark_as_read">Отметить историю прочитанной? </string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 </resources>
 
